@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Scam Vulnerability Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        img {
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-2 text-gray-800">🔍 Your Scam Vulnerability Profile</h1>
+        <p class="text-center text-gray-600 mb-8">Discover which scams target people with your daily habits</p>
+        
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="max-w-3xl mx-auto">
+            <!-- Start Screen -->
+            <div id="start-screen" class="bg-white rounded-xl shadow-lg p-8 text-center fade-in">
+                <div class="text-6xl mb-4" justify="center"><img src="https://checkmate.sg/lovable-uploads/checkmate.svg" alt="CM logo" width="95" height ="95"></div>
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Find Out Your Risk Profile</h2>
+                <p class="text-gray-600 mb-6">Answer a few questions about your daily habits and digital lifestyle. We'll show you exactly which scams are designed to target people like you—and how to stay protected.</p>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 text-left">
+                    <p class="text-sm text-gray-700"><strong>Privacy Note:</strong> Your answers stay on your device. We don't collect or store any personal information.</p>
+                </div>
+                <button id="start-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105">
+                    Start Assessment 🚀
+                </button>
+            </div>
+            
+            <!-- Quiz Screen -->
+            <div id="quiz-screen" class="bg-white rounded-xl shadow-lg p-8 hidden">
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                        <span>Question <span id="current-q">1</span> of <span id="total-q">10</span></span>
+                        <span id="category-tag" class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold"></span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div id="progress-bar" class="bg-gradient-to-r from-purple-500 to-blue-600 h-3 rounded-full transition-all duration-500" style="width: 10%"></div>
+                    </div>
+                </div>
+                
+                <!-- Question -->
+                <div class="mb-8">
+                    <h3 id="question-text" class="text-xl font-semibold mb-6 text-gray-800"></h3>
+                    <div id="options-container" class="space-y-3"></div>
+                </div>
+            </div>
+            
+            <!-- Results Screen -->
+            <div id="results-screen" class="bg-white rounded-xl shadow-lg p-8 hidden">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">📊</div>
+                    <h2 class="text-3xl font-bold mb-2 text-gray-800">Your Vulnerability Profile</h2>
+                    <p class="text-gray-600">Based on your habits, here are the scams targeting people like you</p>
+                </div>
+                
+                <!-- Risk Profile Overview -->
+                <div id="risk-overview" class="mb-8 p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border-l-4 border-orange-500">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">⚠️ Your Risk Level: <span id="risk-level"></span></h3>
+                    <p id="risk-description" class="text-gray-700"></p>
+                </div>
+                
+                <!-- Specific Scam Vulnerabilities -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">🎯 Scams That Target You</h3>
+                    <div id="vulnerabilities-list" class="space-y-4"></div>
+                </div>
+                
+                <!-- Protection Tips -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">🛡️ Your Personal Protection Plan</h3>
+                    <div id="protection-tips" class="space-y-3"></div>
+                </div>
+                
+                <!-- App CTA -->
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-6 mb-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">🚨 Confirm whether it's really a scam!</h3>
+                    <p class="mb-4">Your profile shows you need active protection. CheckMate provides:</p>
+                    <ul class="mb-4 space-y-2 text-sm">
+                        <li>✓ Real-time scam alerts tailored to your risk profile</li>
+                        <li>✓ Suspicious message scanning before you click</li>
+                        <li>✓ Daily security tips based on your habits</li>
+                        <li>✓ Emergency support if you're targeted</li>
+                    </ul>
+                    <button class="bg-white text-purple-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 w-full">
+                        Check out CheckMate today! 📱
+                    </button>
+                </div>
+                
+                <div class="flex gap-4 justify-center">
+                    <button id="share-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                        Share Profile 📤
+                    </button>
+                    <button id="restart-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                        Retake Assessment 🔄
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions about daily patterns and habits
+        const questions = [
+            {
+                question: "How often do you check your email throughout the day? 📧",
+                category: "Digital Habits",
+                options: [
+                    "Constantly - I'm always checking",
+                    "Several times a day",
+                    "Once or twice a day",
+                    "Rarely, only when expecting something"
+                ],
+                weights: {
+                    phishing: [4, 3, 2, 1],
+                    urgency: [4, 3, 2, 1]
+                }
+            },
+            {
+                question: "How do you typically shop online? 🛍️",
+                category: "Shopping Behavior",
+                options: [
+                    "I browse deals and click ads to find bargains",
+                    "I go directly to known retailer websites",
+                    "I only buy from brands I know well",
+                    "I rarely shop online"
+                ],
+                weights: {
+                    fake_shops: [4, 2, 1, 0],
+                    payment_fraud: [4, 2, 1, 0]
+                }
+            },
+            {
+                question: "What's your typical response to 'urgent' messages? 🚨",
+                category: "Stress Response",
+                options: [
+                    "I act immediately - urgency means important",
+                    "I usually respond quickly but read carefully",
+                    "I pause and verify before acting",
+                    "I ignore urgent messages from unknown sources"
+                ],
+                weights: {
+                    urgency: [4, 3, 2, 0],
+                    phishing: [4, 3, 1, 0]
+                }
+            },
+            {
+                question: "How active are you on social media? 📱",
+                category: "Social Media",
+                options: [
+                    "Very active - posting daily, sharing personal updates",
+                    "Moderately active - checking regularly",
+                    "Occasional user - mostly just browsing",
+                    "Minimal or no social media use"
+                ],
+                weights: {
+                    social_engineering: [4, 3, 2, 1],
+                    identity_theft: [4, 3, 2, 1],
+                    romance: [3, 3, 2, 1]
+                }
+            },
+            {
+                question: "Do you use the same password for multiple accounts? 🔐",
+                category: "Security Practices",
+                options: [
+                    "Yes, mostly the same or similar passwords",
+                    "I have a few passwords I rotate between",
+                    "Different passwords but simple ones",
+                    "Unique, complex passwords for everything"
+                ],
+                weights: {
+                    account_takeover: [4, 3, 2, 0],
+                    identity_theft: [4, 3, 2, 0]
+                }
+            },
+            {
+                question: "How do you handle financial stress or unexpected expenses? 💰",
+                category: "Financial Behavior",
+                options: [
+                    "I look for quick money solutions online",
+                    "I consider loan offers and investment opportunities",
+                    "I reach out to family/friends or official institutions",
+                    "I have savings and rarely face this situation"
+                ],
+                weights: {
+                    loan_scams: [4, 3, 1, 0],
+                    investment_fraud: [4, 4, 1, 0],
+                    crypto_scams: [4, 3, 1, 0]
+                }
+            },
+            {
+                question: "When you receive unexpected phone calls, you: ☎️",
+                category: "Phone Habits",
+                options: [
+                    "Usually answer to see who it is",
+                    "Answer if the number looks familiar",
+                    "Let unknown numbers go to voicemail",
+                    "Rarely answer calls from unknown numbers"
+                ],
+                weights: {
+                    vishing: [4, 3, 2, 1],
+                    tech_support: [4, 3, 1, 0]
+                }
+            },
+            {
+                question: "How comfortable are you with technology? 💻",
+                category: "Tech Savviness",
+                options: [
+                    "I struggle with tech and often need help",
+                    "I know the basics but get confused sometimes",
+                    "Pretty comfortable with most tech",
+                    "Very tech-savvy, I work with it daily"
+                ],
+                weights: {
+                    tech_support: [4, 3, 1, 0],
+                    fake_updates: [4, 3, 2, 1],
+                    phishing: [3, 2, 1, 0]
+                }
+            },
+            {
+                question: "How do you typically connect with people online? 👥",
+                category: "Social Connections",
+                options: [
+                    "I'm open to meeting new people online",
+                    "I accept friend requests from friends-of-friends",
+                    "I'm selective but do make online connections",
+                    "I only connect with people I know in person"
+                ],
+                weights: {
+                    romance: [4, 3, 2, 0],
+                    social_engineering: [4, 3, 2, 1],
+                    catfishing: [4, 3, 2, 0]
+                }
+            },
+            {
+                question: "What best describes your current life situation? 🏠",
+                category: "Life Context",
+                options: [
+                    "Feeling lonely or recently went through a major life change",
+                    "Busy with work/family, often multitasking",
+                    "Retired or have lots of free time",
+                    "Stable routine with good support network"
+                ],
+                weights: {
+                    romance: [4, 2, 3, 1],
+                    grandparent_scam: [3, 2, 4, 1],
+                    urgency: [2, 4, 2, 1],
+                    social_engineering: [4, 3, 3, 2]
+                }
+            }
+        ];
+
+        // Scam type definitions with personalized descriptions
+        const scamTypes = {
+            phishing: {
+                name: "Email/SMS Phishing",
+                icon: "🎣",
+                description: "Based on your email habits, you're a prime target for phishing scams. Scammers know people who check email frequently are more likely to respond quickly without verifying.",
+                examples: "Fake bank alerts, delivery notifications, password reset requests",
+                protection: "Always verify sender addresses, hover over links before clicking, and never enter passwords from email links"
+            },
+            urgency: {
+                name: "Urgency-Based Scams",
+                icon: "⏰",
+                description: "Your response to urgent messages makes you vulnerable to pressure tactics. Scammers create fake emergencies to bypass your critical thinking.",
+                examples: "Account suspension warnings, 'act now' deals, emergency family situations",
+                protection: "Remember: Real emergencies rarely come via email or text. Always pause and verify through official channels"
+            },
+            fake_shops: {
+                name: "Fake Online Stores",
+                icon: "🏪",
+                description: "Your shopping behavior puts you at risk for fake e-commerce sites. Scammers create convincing stores offering deals that seem too good to pass up.",
+                examples: "Deep discount websites, limited-time offers, ads with unbelievable prices",
+                protection: "Only shop on verified retailer sites, check reviews, verify HTTPS and payment security"
+            },
+            payment_fraud: {
+                name: "Payment & Checkout Scams",
+                icon: "💳",
+                description: "The way you shop online exposes you to payment fraud. Scammers intercept transactions or create fake payment pages.",
+                examples: "Fake payment portals, cryptocurrency-only stores, unusual payment requests",
+                protection: "Use credit cards (not debit), enable transaction alerts, verify payment page security"
+            },
+            social_engineering: {
+                name: "Social Engineering Attacks",
+                icon: "🎭",
+                description: "Your social media presence gives scammers personal information they can use to manipulate you. They study your posts to build trust.",
+                examples: "Fake friend requests, impersonation of family/friends, personalized scam messages",
+                protection: "Limit personal information sharing, verify unexpected requests even from 'friends', check privacy settings"
+            },
+            identity_theft: {
+                name: "Identity Theft",
+                icon: "🆔",
+                description: "Your digital footprint and security practices make you vulnerable to identity theft. Scammers piece together information to impersonate you.",
+                examples: "Account takeovers, fraudulent credit applications, medical identity theft",
+                protection: "Use unique strong passwords, enable 2FA everywhere, monitor credit reports regularly"
+            },
+            romance: {
+                name: "Romance & Relationship Scams",
+                icon: "💔",
+                description: "Your openness to online connections makes you a target for romance scammers who build emotional relationships to exploit you financially.",
+                examples: "Fake dating profiles, sob stories needing money, long-distance relationship requests",
+                protection: "Never send money to someone you haven't met, reverse-image search profile photos, be wary of anyone who quickly professes love"
+            },
+            loan_scams: {
+                name: "Predatory Loan Scams",
+                icon: "💸",
+                description: "Your financial situation makes you vulnerable to fake loan offers and advance-fee scams that promise help but steal your money.",
+                examples: "Guaranteed loan approvals, upfront fee requests, no credit check loans",
+                protection: "Verify lenders are licensed, never pay upfront fees, beware of unsolicited loan offers"
+            },
+            investment_fraud: {
+                name: "Investment & Get-Rich-Quick Scams",
+                icon: "📈",
+                description: "Scammers target people seeking financial opportunities with fake investments promising unrealistic returns.",
+                examples: "Ponzi schemes, pump-and-dump stocks, fake crypto investments",
+                protection: "If it sounds too good to be true, it is. Research investments independently, verify regulatory compliance"
+            },
+            crypto_scams: {
+                name: "Cryptocurrency Scams",
+                icon: "₿",
+                description: "The complexity of crypto makes you vulnerable to scammers who promise easy profits or use crypto's irreversibility against you.",
+                examples: "Fake crypto exchanges, investment pools, giveaway scams",
+                protection: "Only use established exchanges, never share wallet keys, beware of guaranteed returns"
+            },
+            vishing: {
+                name: "Phone Call Scams (Vishing)",
+                icon: "📞",
+                description: "Your phone habits make you susceptible to voice phishing. Scammers use caller ID spoofing to appear legitimate.",
+                examples: "IRS threats, bank fraud alerts, warrant arrests, tech support calls",
+                protection: "Hang up and call official numbers directly, never give personal info over unexpected calls"
+            },
+            tech_support: {
+                name: "Tech Support Scams",
+                icon: "🖥️",
+                description: "Your comfort level with technology makes you vulnerable to fake tech support scams that exploit confusion or fear.",
+                examples: "Pop-up virus warnings, Microsoft callback scams, router security alerts",
+                protection: "Real tech companies never cold call. Close suspicious pop-ups, never allow remote access"
+            },
+            fake_updates: {
+                name: "Fake Software Updates",
+                icon: "⚠️",
+                description: "Scammers exploit uncertainty about technology with fake update notifications that install malware.",
+                examples: "Fake browser updates, Flash player installs, security software alerts",
+                protection: "Only update through official app stores or directly from software websites"
+            },
+            account_takeover: {
+                name: "Account Takeover",
+                icon: "🔓",
+                description: "Your password habits make it easier for scammers to break into your accounts and lock you out or steal information.",
+                examples: "Email hijacking, social media takeovers, banking access",
+                protection: "Use password managers, enable 2FA, use different passwords for each account"
+            },
+            grandparent_scam: {
+                name: "Family Emergency Scams",
+                icon: "👵",
+                description: "Scammers exploit your care for family by pretending to be relatives in desperate situations needing immediate money.",
+                examples: "Bail money requests, stranded abroad stories, medical emergency calls",
+                protection: "Verify by calling the family member directly, ask questions only they would know, don't wire money"
+            },
+            catfishing: {
+                name: "Catfishing & Fake Identities",
+                icon: "🐱",
+                description: "Your openness online makes you vulnerable to people creating entirely fake personas to manipulate you.",
+                examples: "Fake profiles, stolen photos, fabricated life stories",
+                protection: "Video call before trusting, reverse image search, be skeptical of too-perfect profiles"
+            }
+        };
+
+        // Game State
+        let currentQuestion = 0;
+        let scamScores = {};
+        let userAnswers = [];
+
+        // Initialize scam scores
+        Object.keys(scamTypes).forEach(scam => {
+            scamScores[scam] = 0;
+        });
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startBtn = document.getElementById('start-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQ = document.getElementById('current-q');
+        const totalQ = document.getElementById('total-q');
+        const progressBar = document.getElementById('progress-bar');
+        const categoryTag = document.getElementById('category-tag');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startQuiz);
+        document.getElementById('restart-btn').addEventListener('click', restartQuiz);
+        document.getElementById('share-btn').addEventListener('click', shareResults);
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionText.textContent = question.question;
+            categoryTag.textContent = question.category;
+            
+            // Update progress
+            currentQ.textContent = currentQuestion + 1;
+            totalQ.textContent = questions.length;
+            progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create option buttons
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'w-full text-left p-4 border-2 border-gray-300 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all transform hover:scale-[1.01]';
+                button.textContent = option;
+                button.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(answerIndex) {
+            userAnswers.push(answerIndex);
+            const question = questions[currentQuestion];
+            
+            // Update scam scores based on weights
+            Object.keys(question.weights).forEach(scamType => {
+                scamScores[scamType] += question.weights[scamType][answerIndex];
+            });
+            
+            // Move to next question or show results
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                setTimeout(() => loadQuestion(), 300);
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            
+            // Sort scam scores to find top vulnerabilities
+            const sortedScams = Object.entries(scamScores)
+                .sort((a, b) => b[1] - a[1])
+                .filter(([_, score]) => score > 0);
+            
+            const totalScore = sortedScams.reduce((sum, [_, score]) => sum + score, 0);
+            const avgScore = totalScore / sortedScams.length;
+            
+            // Determine risk level
+            const riskLevel = document.getElementById('risk-level');
+            const riskDescription = document.getElementById('risk-description');
+            
+            if (avgScore >= 3) {
+                riskLevel.textContent = "HIGH";
+                riskLevel.className = "text-red-600 font-bold";
+                riskDescription.textContent = "Your daily habits and digital behavior create multiple vulnerability points that scammers actively exploit. Immediate action is recommended to protect yourself.";
+            } else if (avgScore >= 2) {
+                riskLevel.textContent = "MODERATE";
+                riskLevel.className = "text-orange-600 font-bold";
+                riskDescription.textContent = "You have several areas where scammers could target you. With some awareness and habit changes, you can significantly reduce your risk.";
+            } else {
+                riskLevel.textContent = "LOW TO MODERATE";
+                riskLevel.className = "text-yellow-600 font-bold";
+                riskDescription.textContent = "You're generally cautious, but scammers are constantly evolving. Stay vigilant and keep learning about new tactics.";
+            }
+            
+            // Display top vulnerabilities
+            const vulnerabilitiesList = document.getElementById('vulnerabilities-list');
+            const topScams = sortedScams.slice(0, 5);
+            
+            topScams.forEach(([scamType, score], index) => {
+                const scam = scamTypes[scamType];
+                const vulnCard = document.createElement('div');
+                vulnCard.className = 'bg-red-50 border-l-4 border-red-500 p-4 rounded-lg slide-in';
+                vulnCard.style.animationDelay = `${index * 0.1}s`;
+                vulnCard.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="text-2xl">${scam.icon}</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-lg text-gray-800 mb-1">${scam.name}</h4>
+                            <p class="text-gray-700 text-sm mb-2">${scam.description}</p>
+                            <div class="bg-white p-2 rounded text-xs">
+                                <strong>Common examples:</strong> ${scam.examples}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                vulnerabilitiesList.appendChild(vulnCard);
+            });
+            
+            // Display protection tips
+            const protectionTips = document.getElementById('protection-tips');
+            topScams.slice(0, 3).forEach(([ scamType, _], index) => {
+                const scam = scamTypes[scamType];
+                const tipCard = document.createElement('div');
+                tipCard.className = 'bg-green-50 border-l-4 border-green-500 p-4 rounded-lg slide-in';
+                tipCard.style.animationDelay = `${(index + 5) * 0.1}s`;
+                tipCard.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="text-xl">✓</div>
+                        <div>
+                            <strong class="text-gray-800">${scam.name}:</strong>
+                            <span class="text-gray-700"> ${scam.protection}</span>
+                        </div>
+                    </div>
+                `;
+                protectionTips.appendChild(tipCard);
+            });
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            Object.keys(scamTypes).forEach(scam => {
+                scamScores[scam] = 0;
+            });
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+
+        function shareResults() {
+            const text = "I just discovered my personal scam vulnerability profile! Find out which scams target people with YOUR habits. 🛡️";
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Scam Vulnerability Profile',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+                    alert('Link copied to clipboard! Share with friends and family to help them stay protected!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
